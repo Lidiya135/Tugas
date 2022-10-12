@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch data name</title>
+</head>
+<body>
+    <p id="output"></p>
+	<script>
+			fetch('https://jsonplaceholder.typicode.com/users')
+			.then((response) => response.json())
+			.then((data) => {
+                console.log(data)
+				let output = '<h2>Biodata</h2>';
+				data.forEach((post) => {
+					output += `
+						<div>
+							<p>Name : ${post.name}</p>
+						</div>
+					`;
+				})
+				document.getElementById('output').innerHTML = output;
+			})
+			.catch(
+                err => document.getElementById('output').innerHTML = `${err}`
+            );
+	</script>
+</body>
+</html>
